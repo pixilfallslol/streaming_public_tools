@@ -7,17 +7,43 @@ float yVel = 5;
 String text = "Stream starting soon!";
 PImage img;
 PFont font;
-boolean drawCountdown = true;
+boolean drawCountdown = false;
+int time = 0;
+String finishSound = "ding.wav";
+SoundFile sfx;
 int previousMillis = 0;
 int seconds = 0;
 int minutes = 0;
 int hours = 0;
 int count1 = 5;
-String finishSound = "ding.wav";
-SoundFile sfx;
+
+String timeStr(String n){
+    int intN = int(n);
+    int sec1 = intN%10;
+    int sec10 = (intN/10)%6;
+    int min1 = (intN/60)%10;
+    int min10 = (intN/600)%6;
+    int hrs = intN/3600;
+    if(intN == 0){
+        return "any moment";
+    }
+    else if(hrs >= 24){
+        return "a long time";
+    }
+    else if(hrs >= 1){
+        return str(hrs)+":"+str(min10)+str(min1)+":"+str(sec10)+str(sec1);
+    }
+    else if(min10 >= 1){
+        return str(min10)+str(min1)+":"+str(sec10)+str(sec1);
+    }
+    else{
+        return str(min1)+":"+str(sec10)+str(sec1);
+    }
+}
+
 void setup(){
   img = loadImage("eeeeeee.png");
-  font = loadFont("c.vlw");
+  font = createFont("OpenSans-CondLight.ttf",48);
   sfx = new SoundFile(this,finishSound);
   size(1920,1080);
 }
@@ -42,7 +68,9 @@ void draw(){
   }
   image(img,xPos,yPos,200,200);
   textAlign(CENTER,CENTER);
-  strokeText(text, width/2, 50, color(255, 255, 255), color(0), 3, font);
+  fill(0);
+  textFont(font);
+  text(text,width/2,50);
   drawCountdown();
 }
 
@@ -90,6 +118,6 @@ void keyPressed(){
   }
   if(key == 's'){
     text = "Stream starting soon!";
-    drawCountdown = true;
+    drawCountdown = false;
   }
 }
