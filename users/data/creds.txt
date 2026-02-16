@@ -1,0 +1,2 @@
+APP_ID = "csp9unrohk3fn0mee49taotjkoxcwj"
+APP_SECRET = "c4lmfd2ccjxkguj5bcler2lobxf8kv"

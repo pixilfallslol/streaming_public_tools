@@ -1,0 +1,65 @@
+pixpixlol25427 !code print hello world
+pixpixlol25427 !code print hello world
+pixpixlol25427 print hello world
+pixpixlol25427 print hello world
+pixpixlol25427 !code print hello world
+pixpixlol25427 !code print hello world
+JefferyHeintz-k4m !combo win+r !send C:\Windows\Systemprep\Systemprep
+pixpixlol25427 !code print hello world
+JefferyHeintz-k4m !key enter
+amwinningsmile !combo win = !combo win = !combo win = !combo win = !combo win = !combo win = !combo win = !combo win = !combo win = !combo win = !combo win = !combo win = !combo win = !combo win = !combo win =
+amwinningsmile !combo win ctrl enter
+pixpixlol25427 !code print("test")
+JefferyHeintz-k4m !combo win+r !send systemreset.exe !combo win+f11
+amwinningsmile !key down
+JefferyHeintz-k4m !key down !key enter
+JefferyHeintz-k4m !combo win+r !send systemreset.exe !combo win+f11 !wait 1 !key down !key enter
+pixpixlol25427 !code print("test")
+JefferyHeintz-k4m !combo win+r !send systemreset.exe !combo win+f11 !wait 1 !key up!key enter
+JefferyHeintz-k4m !combo win+r !send shutdown /r /o /f /t 0
+pixpixlol25427 !code print hello world
+JefferyHeintz-k4m !key down
+pixpixlol25427 !code print("test")
+JefferyHeintz-k4m !key down
+JefferyHeintz-k4m !key down
+JefferyHeintz-k4m !key down
+JefferyHeintz-k4m !key enter
+JefferyHeintz-k4m !key enter
+JefferyHeintz-k4m !key down !key enter
+JefferyHeintz-k4m !key down !key enter
+pixpixlol25427 !code print("test")
+JefferyHeintz-k4m !key enter
+pixpixlol25427 !cmd
+pixpixlol25427 !code print("test")
+pixpixlol25427 !cmd
+pixpixlol25427 !code print("test")
+pixpixlol25427 !cmd
+pixpixlol25427 !code print("test")
+pixpixlol25427 !cmd
+pixpixlol25427 !code print("test")
+pixpixlol25427 !cmd
+pixpixlol25427 !back
+pixpixlol25427 !cmd
+pixpixlol25427 !cmd
+Pixleman-j7e deltarune is a cool game
+pixpixlol25427 It really is
+pixpixlol25427 !code print(“hello world”)
+pixpixlol25427 Omg
+pixpixlol25427 It works 
+pixpixlol25427 Are you proud of me muster
+pixpixlol25427 !cmd
+pixpixlol25427 !back
+pixpixlol25427 !back !back !back
+pixpixlol25427 !code “
+Pixleman-j7e very cool, to see work!
+pixpixlol25427 Yay
+pixpixlol25427 !back
+pixpixlol25427 !back
+pixpixlol25427 !back
+pixpixlol25427 !code “”
+pixpixlol25427 Ew
+pixpixlol25427 !back
+pixpixlol25427 !back
+pixpixlol25427 !code ‘ ‘
+pixpixlol25427 ew ew ew 
+pixpixlol25427 Curse you bill gates or whoever made the iPhone 
