@@ -1,36 +1,24 @@
 color BG_COLOR = color(99,57,17);
 
-int hours = 0;
-int minutes = 0;
-int seconds = 0;
-int days = 0;
-int timeBeforeNextSecond = 0;
+int start;
 
 PFont font;
 
 void setup(){
-  font = loadFont("ComicSansMS-48.vlw");
-  size(1170,347);
+  font = createFont("OpenSans-CondBold.ttf",48);
+  start = millis();
+  textAlign(CENTER);
+  size(1170,347,P2D);
 }
 
 void draw(){
   background(BG_COLOR);
-  timeBeforeNextSecond++;
-  if(timeBeforeNextSecond == 2){
-    seconds += 1;
-    timeBeforeNextSecond = 0;
-  }
-  if(seconds == 60){
-    minutes += 1;
-    seconds = 0;
-  }
-  if(minutes == 60){
-    hours += 1;
-    minutes = 0;
-  }
+  int elapsed = (millis()-start)/1000;
+  int seconds = elapsed%60;
+  int minutes = (elapsed/60)%60;
+  int hours = (elapsed/3600);
   fill(255);
-  strokeText(str(hours)+"hr "+str(minutes)+"m "+str(seconds)+"s",100,250,color(255,255,255),color(0),5,font,200);
-  println("next second "+timeBeforeNextSecond);
+  strokeText(str(hours)+"hr "+str(minutes)+"m "+str(seconds)+"s",width/2,height-100,color(255,255,255),color(0),5,font,200);
   println("seconds "+seconds);
   println("minutes "+minutes);
   println("hours "+hours);
