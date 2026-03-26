@@ -17,29 +17,17 @@ PImage headphones;
 PImage processing;
 PImage cat;
 
-boolean glasses = false;
-int glassesTime = 0;
-boolean hat = false;
-int hatTime = 0;
-boolean headphone = false;
-int headphoneTime = 0;
-boolean process = false;
-int processingTime = 0;
-boolean ears = false;
-int earTime = 0;
-
-int randChance = int(random(0,5));
+int active = 0;
 int lastTime = 0;
-boolean canChange = true;
 
 boolean speaking = false;
 
 boolean hasFocus = true;
 
-Button idle;
-Button talking;
-
 float NOISE_THRESHOLD = 10;
+
+float imageW;
+float imageH;
 
 void setup(){
   imageMode(CENTER);
@@ -57,204 +45,41 @@ void setup(){
   img1 = loadImage("0.png");
   img2 = loadImage("1.png");
   curImg = img1;
-  float[] icoor = {W_W-100,100};
-  float[] tcoor = {W_W-100,200};
-  idle = new Button(icoor,"button1");
-  talking = new Button(tcoor,"button2");
+  imageW = curImg.width;
+  imageH = curImg.height;
   size(1920,1080,P2D);
 }
 
-void chooseRandom(){
-  randChance = int(random(0,13));
-}
-
 void newChoice(){
-  if(millis()-lastTime>=1000 && canChange){
-    chooseRandom();
+  if(millis()-lastTime>=10000){
+    active = int(random(0,13));
     lastTime = millis();
   }
-  if(randChance==1){
-    glasses = true;
-    glassesTime++;
-    canChange = false;
-  }else{
-    glassesTime = 0;
-  }
-  if(glassesTime>=1000){
-    canChange = true;
-    glasses = false;
-  }
-  
-  if(randChance==2){
-    hat = true;
-    hatTime++;
-    canChange = false;
-  }else{
-    hatTime = 0;
-  }
-  if(hatTime>=1000){
-    canChange = true;
-    hat = false;
-  }
-  
-  if(randChance==3){
-    headphone = true;
-    headphoneTime++;
-    canChange = false;
-  }else{
-    headphoneTime = 0;
-  }
-  if(headphoneTime>=1000){
-    canChange = true;
-    headphone = false;
-  }
-  
-  if(randChance==4){
-    process = true;
-    processingTime++;
-    canChange = false;
-  }else{
-    processingTime = 0;
-  }
-  if(processingTime>=1000){
-    canChange = true;
-    process = false;
-  }
-  
-  if(randChance==5){
-    ears = true;
-    earTime++;
-    canChange = false;
-  }else{
-    earTime = 0;
-  }
-  if(earTime>=1000){
-    canChange = true;
-    ears = false;
-  }
-}
-
-void drawGlasses(float x, float y, float w, float h){
-  if(!glasses) return;
-  image(g,x,y,w,h);
-}
-
-void drawHat(float x, float y, float w, float hh){
-  if(!hat) return;
-  image(h,x,y,w,hh);
-}
-
-void drawHeadphones(float x, float y, float w, float hh){
-  if(!headphone) return;
-  image(headphones,x,y,w,hh);
-}
-
-void drawProcessing(float x, float y, float w, float hh){
-  if(!process) return;
-  image(processing,x,y,w,hh);
-}
-
-void drawEars(float x, float y, float w, float hh){
-  if(!ears) return;
-  image(cat,x,y,w,hh);
 }
 
 void draw(){
   background(0xff00ff00);
   drawPixil();
   newChoice();
-  idle.update();
-  idle.show();
-  talking.update();
-  talking.show();
-  handleClick();
-}
-
-void openFile1(){
-  try{
-    Frame f = new Frame("Img Chooser");
-    FileDialog d = new FileDialog((f),"Select file",0);
-    d.setDirectory(this.sketchPath());
-    d.setFile(".png");
-    d.setMultipleMode(false);
-    d.toFront();
-    d.setMode(FileDialog.LOAD);
-    d.setVisible(true);
-    if (d.getFile() != null) {
-      String file = d.getDirectory()+d.getFile();
-      img1 = loadImage(file);
-    }
-    d.removeNotify();
-    frame.removeNotify();
-    d.dispose();
-    f.dispose();
-  }catch(Exception e){
-    e.printStackTrace();
-  }
-}
-
-void openFile2(){
-  Frame f = new Frame("Img Chooser");
-  FileDialog d = new FileDialog((f),"Select file",0);
-  d.setDirectory(this.sketchPath());
-  d.setFile(".png");
-  d.setMultipleMode(false);
-  d.toFront();
-  d.setMode(FileDialog.LOAD);
-  d.setVisible(true);
-  if (d.getFile() != null) {
-    String file = d.getDirectory()+d.getFile();
-    img2 = loadImage(file);
-  }
-  d.removeNotify();
-  frame.removeNotify();
-  d.dispose();
-  f.dispose();
-}
-
-void handleClick(){
-  if(idle.clicked){
-    openFile1();
-    idle.clicked = false;
-  }
-  if(talking.clicked){
-    openFile2();
-    talking.clicked = false;
-  }
 }
 
 void drawPixil(){
   float level = amp.analyze();
-  float b = level*1000;
-  float anim = sin(frameCount*0.06)*b;
+  float b = level*300;
   float xx = W_W/2;
   float yy = b+W_H/2;
-  float ww = curImg.width; // anim-curImg.width; if you want the anim.
-  float hh = curImg.height;
-  if(b>NOISE_THRESHOLD){
-    speaking = true;
-  }else{
-    speaking = false;
-  }
+  speaking = b>NOISE_THRESHOLD;
   if(speaking){
     curImg = img2;
   }else{
     curImg = img1;
   }
-  image(curImg,xx,yy,ww,hh);
-  drawHeadphones(xx,yy-60,ww+100,hh/2);
-  drawGlasses(xx,yy,ww+50,hh/2);
-  drawHat(xx,yy-300,ww/2,hh/2);
-  drawProcessing(xx+160,yy+200,ww/6-70,hh/6);
-  drawEars(xx,yy-200,ww-100,hh-100);
-}
-
-void keyPressed(){
-  if(key=='h') hat = !hat;
-  if(key=='g') glasses = !glasses;
-  if(key=='e') headphone = !headphone;
-  if(key=='p') process = !process;
-  if(key=='a') ears = !ears;
+  image(curImg,xx,yy,imageW,imageH);
+  if(active==1) image(g,xx,yy,imageW+50,imageH/2);
+  if(active==2) image(h,xx,yy-300,imageW/2,imageH/2);
+  if(active==3) image(headphones,xx,yy-60,imageW+100,imageH/2);
+  if(active==4) image(processing,xx+160,yy+200,imageW/6-70,imageH/6);
+  if(active==5) image(cat,xx,yy-200,imageW-100,imageH-100);
 }
 
 void mouseExited(){
